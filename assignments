@@ -1,0 +1,57 @@
+1. check all the supported types in golang (https://go.dev/tour/basics/11)
+2. Write programs to take types as inputs and do some operation
+
+Task2:
+1. create new project bank app
+2. app should have option like
+    create account
+    view balance
+    transfer balance
+    deposit amount
+3. run the app in cli and prompt options to perform operations until opt to exit.
+example output.
+select bank options:
+a. create account
+b. view balance
+c. transfer balance
+d. deposit amount 
+e. exit
+
+a (enter)
+account number: 123
+account name: ravi
+initial deposit: 500
+
+
+select bank options:
+a. create account
+b. view balance
+c. transfer balance
+d. deposit amount 
+e. exit
+
+b (option)
+account number: 123
+balace: 500
+
+select bank options:
+a. create account
+b. view balance
+c. transfer balance
+d. deposit amount 
+e. exit
+
+e (option)
+app ends 
+
+Task3:
+create new project messaging app
+App shoud have 
+1.create user id
+2.login
+3.add contact
+4.send message
+5.receive message 
+6.make a call
+audio or video call
+7.Exit
