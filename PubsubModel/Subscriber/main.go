@@ -3,31 +3,30 @@ package main
 import (
 	"context"
 	"fmt"
-	"time"
+	"log"
 
 	"github.com/redis/go-redis/v9"
 )
+
 var ctx = context.Background()
 
 func main() {
 
-	
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     "redis-11920.c81.us-east-1-2.ec2.redns.redis-cloud.com:11920",
 		Username: "default",
 		Password: "ugcVvpbaQGdFtQGDMjaJrV7Zjx3paZmx",
 	})
 
-	fmt.Println(" Starting publisher...")
-	for i := 1; i <= 5; i++ {
-		message := fmt.Sprintf("Notification #%d", i)
-		err := rdb.Publish(ctx, "notifications", message).Err()
+	sub := rdb.Subscribe(ctx, "notifications")
+
+	fmt.Println("Subscribed to 'notifications' channel...")
+	for {
+		msg, err := sub.ReceiveMessage(ctx)
 		if err != nil {
-			fmt.Println("Error publishing:", err)
-		} else {
-			fmt.Println("Published:", message)
+			log.Println("Error receiving message:", err)
+			continue
 		}
-		time.Sleep(2 * time.Second)
+		fmt.Printf("Received message on channel %s: %s\n", msg.Channel, msg.Payload)
 	}
 }
-
