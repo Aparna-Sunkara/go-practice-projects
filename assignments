@@ -55,3 +55,23 @@ App shoud have
 6.make a call
 audio or video call
 7.Exit
+
+
+4. create app to use Redis cache
+-> use a map to build 
+    need to only store 20 items and remove item if we send new item using LRU cache
+    a. build pub/sub model 
+      pub is a publisher,sub is a subcriber ---when publisher publish any data,redis act as a middleware or cache database for subscribers 
+   
+    b. build worker node pattern in golang
+    It consists of two main parts:
+     1 Producer (Task Sender)
+       Receives tasks (jobs)
+       Puts tasks into a queue
+     2️ Workers (Consumers)
+       A fixed number of worker threads/goroutines
+       Continuously pick tasks from the queue
+       Process them one by one
+
+    c. we need to send keys in encrypted format and retrive data using workers
+    d. redis need to only store 20 items and remove item if we send new item using LRU cache
